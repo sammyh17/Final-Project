@@ -1,4 +1,4 @@
-package BlackJack;
+package application;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -14,15 +14,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import application.Card;
+
 public class cardFunctioms extends Application {
 	private int playerBalance;
-	public ArrayList<Object> playerHand;
-	public ArrayList<Object> dealerHand;
-	public Object deck;
+	public ArrayList<Card> playerHand; //Card
+	public ArrayList<Card> dealerHand; //Card
+	public Deck deck; //Deck
 	public int BET_AMOUNT;
 	private Label balanceLabel;
 	private Label resultLabel;
-	private ArrayList<Object> cards;
+	private ArrayList<Card> cards; //Card
 	
 	
     @Override
@@ -85,14 +87,14 @@ public class cardFunctioms extends Application {
     	
     	doubleDownButton.setOnAction(e -> {
     	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
-    	        // Deduct the bet amount for the double down
+    	        
     	        playerBalance -= BET_AMOUNT;
     	        balanceLabel.setText("Balance: $" + playerBalance);
     	        
-    	        // Draw one additional card for the player
+    	        //Draws one additional card for the player
     	        playerHand.add(deck.drawCard());
     	        
-    	        // Automatically trigger the stand action after doubling down
+    	        //make stand after
     	        standButton.fire();
     	    } else {
     	        // Insufficient cards or balance for doubling down
@@ -104,10 +106,10 @@ public class cardFunctioms extends Application {
     	int score = 0;
     	boolean hasAce = false;
     	for (Card card : hand) {
-    		if (card.getValue() == 1) { // Ace
+    		if (card.getVal() == 1) { // Ace
     			hasAce = true;
             }
-    		score += card.getValue();
+    		score += card.getVal();
         }
     	if (hasAce && score + 10 <= 21) {
     		score += 10; // Count Ace as 11
