@@ -22,8 +22,6 @@ public class cardFunctioms extends Application {
 	public ArrayList<Card> dealerHand; //Card
 	public Deck deck; //Deck
 	public int BET_AMOUNT;
-	private Label balanceLabel;
-	private Label resultLabel;
 	private ArrayList<Card> cards; //Card
 	
 	
@@ -60,7 +58,7 @@ public class cardFunctioms extends Application {
     	        if (playerHand.get(0).getRank() == playerHand.get(1).getRank()) {
     	            // Deduct the bet amount for the second hand
     	            playerBalance -= BET_AMOUNT;
-    	            balanceLabel.setText("Balance: $" + playerBalance);
+    	            
     	            
     	            // Create two separate hands and deal one card to each
     	            ArrayList<Card> hand1 = new ArrayList<>();
@@ -77,11 +75,11 @@ public class cardFunctioms extends Application {
     	            
     	        } else {
     	            // If the two cards are not the same rank, splitting is not allowed
-    	            resultLabel.setText("Splitting is only allowed with pairs of the same rank.");
+    	            System.out.print("Splitting is only allowed with pairs of the same rank.");
     	        }
     	    } else {
     	        // Insufficient cards or balance for splitting
-    	        resultLabel.setText("Cannot split at this time.");
+    	        System.out.print("Cannot split at this time.");
     	    }
     	});
     	
@@ -89,7 +87,6 @@ public class cardFunctioms extends Application {
     	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
     	        
     	        playerBalance -= BET_AMOUNT;
-    	        balanceLabel.setText("Balance: $" + playerBalance);
     	        
     	        //Draws one additional card for the player
     	        playerHand.add(deck.drawCard());
@@ -98,7 +95,7 @@ public class cardFunctioms extends Application {
     	        standButton.fire();
     	    } else {
     	        // Insufficient cards or balance for doubling down
-    	        resultLabel.setText("Cannot double down at this time.");
+    	        System.out.print("Cannot double down at this time.");
     	    }
     	});
     }
@@ -119,9 +116,9 @@ public class cardFunctioms extends Application {
     
     private void checkPlayerBust() {
         if (calculateScore(playerHand) > 21) {
-            resultLabel.setText("You Bust! Dealer Wins!");
+            System.out.print("You Bust! Dealer Wins!");
             playerBalance -= 10;
-            balanceLabel.setText("Balance: $" + playerBalance);
+            System.out.print("Balance: $" + playerBalance);
         }
     }
     
@@ -130,19 +127,19 @@ public class cardFunctioms extends Application {
         int dealerScore = calculateScore(dealerHand);
 
         if (playerScore > 21) {
-            resultLabel.setText("You Bust! Dealer Wins!");
+            System.out.print("You Bust! Dealer Wins!");
             playerBalance -= BET_AMOUNT;
         } else if (dealerScore > 21 || playerScore > dealerScore) {
-            resultLabel.setText("You Win!");
+            System.out.print("You Win!");
             playerBalance += BET_AMOUNT;
         } else if (playerScore < dealerScore) {
-            resultLabel.setText("Dealer Wins!");
+            System.out.print("Dealer Wins!");
             playerBalance -= BET_AMOUNT;
         } else {
-            resultLabel.setText("It's a Tie!");
+            System.out.print("It's a Tie!");
         }
 
-        balanceLabel.setText("Balance: $" + playerBalance);
+        System.out.print("Balance: $" + playerBalance);
     }
    
     public Card drawCard() {
