@@ -35,10 +35,7 @@ public class cardFunctioms extends Application {
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
     	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton);
-    	VBox resultBox = new VBox(10, resultLabel, balanceLabel);
         root.setBottom(buttonBox);
-        root.setTop(resultBox);
-        
         
     	hitButton.setOnAction(e -> {
             playerHand.add(deck.drawCard());
