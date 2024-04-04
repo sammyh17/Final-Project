@@ -16,6 +16,11 @@ import java.util.List;
 
 import application.Card;
 
+// Known errors 
+//
+// Player doesnt auto win on blackjack and can still play after
+// Dealer still plays even if player busts
+
 public class cardFunctions extends Application {
 	private int playerBalance;
 	public ArrayList<Card> playerHand; //Card
