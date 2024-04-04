@@ -1,4 +1,4 @@
-package Dealer2;
+package classFiles.Blackjack;
 
 import java.util.ArrayList;
 import java.util.Collections;

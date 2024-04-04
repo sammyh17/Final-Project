@@ -1,16 +1,16 @@
-package Finalproject1;
+package classFiles.Blackjack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 
-	public class Finalproject1 {
+	public class Hand {
 	private Hand hand;
 
 
 
-	public Finalproject1() {
+	public Hand() {
 	this.hand = new Hand();
 
    }

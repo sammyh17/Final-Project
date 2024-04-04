@@ -1,13 +1,12 @@
-package Final Project;
-public class MoneyFunction 
+package classFiles.Blackjack;
 import javafx.scene.control.Label;
 
-public class ChipManager {
+public class Moneyfunction {
     private int playerMoney; // Player's money amount
     private Label moneyLabel; // Label to display player's money on the UI
 
     // Constructor to initialize ChipManager with initial money and money label
-    public ChipManager(int initialMoney, Label moneyLabel) {
+    public Moneyfunction(int initialMoney, Label moneyLabel) {
         this.playerMoney = initialMoney; // Set initial money
         this.moneyLabel = moneyLabel; // Set money label for UI
         updateMoneyLabel(); // Update money label on UI
@@ -47,7 +46,7 @@ public class ChipManager {
         Label moneyLabel = new Label("$2500");
 
         // Create an instance of ChipManager with initial money and money label
-        ChipManager chipManager = new ChipManager(2500, moneyLabel);
+        Moneyfunction chipManager = new Moneyfunction(2500, moneyLabel);
 
         // Create a button to add $100 to player's money
         Button addChipsButton = new Button("Add $100");

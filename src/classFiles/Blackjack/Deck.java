@@ -1,4 +1,4 @@
-package Blackjack;
+package classFiles.Blackjack;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,6 +12,11 @@ public class Deck
 	final static String[] ranks = {"2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"};
 
 	// Constructor
+	
+	  public Deck()
+	  	{
+		this(52);
+	  	}
 
 	  public Deck(int numOfCards)
 	    {
@@ -44,5 +49,16 @@ public class Deck
 	      deck[k] = tmpCard;
 	      }
 	    }	
+	  
+	  // Drawcard
+	  
+	  /*
+	   * Method for drawing the top card in the deck
+	   * @return card
+	   */
+	  public Card drawCard()
+	  	{
+		return deck.get(0);
+	  	}
 	
 }// END CLASS

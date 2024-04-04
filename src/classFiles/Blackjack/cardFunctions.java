@@ -1,4 +1,4 @@
-package application;
+package classFiles.Blackjack;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import application.Card;
 
-public class cardFunctioms extends Application {
+public class cardFunctions extends Application {
 	private int playerBalance;
 	public ArrayList<Card> playerHand; //Card
 	public ArrayList<Card> dealerHand; //Card
