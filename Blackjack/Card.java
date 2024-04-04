@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import ajWorks.Deck;
 
+/**
+ * Class that creates card objects and sets them up.
+ */
 public class Card extends Deck 
 {
 

@@ -2,6 +2,9 @@ package Blackjack;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that creates a deck objects and fills it with cards.
+ */
 public class Deck 
 {
 	private ArrayList<Card> deck;
