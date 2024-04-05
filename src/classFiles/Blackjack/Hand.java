@@ -1,11 +1,6 @@
 package src.classFiles.Blackjack;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-
-	public class Hand {
+public class Hand {
 	private Hand hand;
 
 
@@ -18,8 +13,8 @@ import java.util.List;
 
 
    public void takeCard(Deck deck) {
-	   Card card1 = deck.dealCard();
-       hand.addCard(card1);
+	   //Card card1 = deck.dealCard();
+       //hand.addCard(card1);
 
    }
 
@@ -31,7 +26,7 @@ import java.util.List;
 
        System.out.print(this.hand);
 
-       
+
 
        //add all cards in the parameter hand to the arraylist (visibleHand)
 
@@ -40,7 +35,7 @@ import java.util.List;
 
    }
 
-   
+
 
    public Hand getHand() {
 

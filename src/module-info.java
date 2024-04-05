@@ -1,6 +1,7 @@
-module blackjack 
+module blackjack
 	{
 	requires javafx.controls;
 	requires javafx.fxml;
-	opens classFiles;
+	requires javafx.graphics;
+	opens src.classFiles.Blackjack;
 	}

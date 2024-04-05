@@ -1,13 +1,11 @@
 package src.classFiles.Blackjack;
 
-import java.util.ArrayList;
-
-import ajWorks.Deck;
+//import ajWorks.Deck;
 
 /**
  * Class that creates card objects and sets them up.
  */
-public class Card extends Deck 
+public class Card extends Deck
 {
 
 
@@ -21,8 +19,8 @@ public class Card extends Deck
 	    mySuit = suit;
 	    myRank = rank;
 	    }
-	
-	
+
+
 	/**
 	   * Method that returns the cards Suit
 	   *
@@ -58,13 +56,14 @@ public class Card extends Deck
 	    *
 	    * @return cardData
 	    */
-	  public String toString()
+	  @Override
+	public String toString()
 	    {
 	    String data = myValue + "  " + mySuit + "  " + myRank;
 	    return data;
 	    }
-	  
-	  
+
+
 	  /**
 	   * Method that compares the values of two cards. Card funtionality method
 	   *

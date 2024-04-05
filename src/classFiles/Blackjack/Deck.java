@@ -1,18 +1,17 @@
 package src.classFiles.Blackjack;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Class that creates a deck objects and fills it with cards.
  */
-public class Deck 
+public class Deck
 {
 	private ArrayList<Card> deck;
 	final static String[] suits = {"Clubs" , "Diamonds" , "Hearts" , "Spades"};
 	final static String[] ranks = {"2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"};
 
 	// Constructor
-	
+
 	  public Deck()
 	  	{
 		this(52);
@@ -20,14 +19,14 @@ public class Deck
 
 	  public Deck(int numOfCards)
 	    {
-	    deck = new ArrayList<Card>(numOfCards);
+	    deck = new ArrayList<>(numOfCards);
 	    for(int i = 0; i < deck.size(); i++)
 	      {
 	      int cardVal = 0;
 	      String cardSuit = suits[0];
 	      String cardRank = ranks[0];
 
-	   
+
 	      deck.add(new Card(cardVal,cardSuit,cardRank));
 	      }
 	    }
@@ -48,10 +47,10 @@ public class Deck
 	      deck[j] = deck[k];
 	      deck[k] = tmpCard;
 	      }
-	    }	
-	  
+	    }
+
 	  // Drawcard
-	  
+
 	  /*
 	   * Method for drawing the top card in the deck
 	   * @return card
@@ -60,5 +59,5 @@ public class Deck
 	  	{
 		return deck.get(0);
 	  	}
-	
+
 }// END CLASS
