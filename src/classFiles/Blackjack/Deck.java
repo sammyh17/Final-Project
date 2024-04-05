@@ -1,4 +1,4 @@
-package classFiles.Blackjack;
+package src.classFiles.Blackjack;
 import java.util.ArrayList;
 import java.util.Scanner;
 

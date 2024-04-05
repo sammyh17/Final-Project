@@ -1,4 +1,4 @@
-package classFiles.Blackjack;
+package src.classFiles.Blackjack;
 import javafx.scene.control.Label;
 
 public class Moneyfunction {

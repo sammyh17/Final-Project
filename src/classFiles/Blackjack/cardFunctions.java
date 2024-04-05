@@ -1,4 +1,4 @@
-package classFiles.Blackjack;
+package src.classFiles.Blackjack;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
