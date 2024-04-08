@@ -38,13 +38,16 @@ public class cardFunctions extends Application {
     	
     	// Create a button to subtract $100 from player's money
     	Button subtractChipsButton = new Button("Bet $100");
+    	Button refundChipsButton = new Button("Return $100");
     	
     	// Create an instance of ChipManager with initial money and money label
     	Moneyfunction chipManager = new Moneyfunction(2500, moneyLabel);
     	
-    	// Set action for subtractChipsButton - calls subtractChips method of chipManager with amount 100
-    	subtractChipsButton.setOnAction(e -> chipManager.subtractChips(100));
+    	Moneyfunction betManager = new Moneyfunction(0, betLabel);
     	
+    	// Set action for subtractChipsButton - calls subtractChips method of chipManager with amount 100
+    	subtractChipsButton.setOnAction(e -> {chipManager.subtractChips(100);  betManager.addChips(100);});
+    	refundChipsButton.setOnAction(e -> {betManager.subtractChips(100); chipManager.addChips(100);});
     	//
     	
    
@@ -57,7 +60,7 @@ public class cardFunctions extends Application {
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
-    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,balance,moneyLabel,betsize,betLabel);
+    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel);
         root.setBottom(buttonBox);
         Scene scene=new Scene(root,700,500);
         primaryStage.setScene(scene);
