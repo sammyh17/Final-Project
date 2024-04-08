@@ -33,6 +33,8 @@ public class cardFunctions extends Application {
     	//Create a label to display player's money and initialize it with $2500
     	Label balance = new Label("Balance");
     	Label moneyLabel = new Label("$2500");
+    	Label betsize = new Label("Bet amount");
+    	Label betLabel = new Label("$0");
     	
     	// Create a button to subtract $100 from player's money
     	Button subtractChipsButton = new Button("Bet $100");
@@ -55,9 +57,9 @@ public class cardFunctions extends Application {
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
-    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,balance,moneyLabel);
+    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,balance,moneyLabel,betsize,betLabel);
         root.setBottom(buttonBox);
-        Scene scene=new Scene(root,500,300);
+        Scene scene=new Scene(root,700,500);
         primaryStage.setScene(scene);
         primaryStage.show();
 
