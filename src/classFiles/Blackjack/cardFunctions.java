@@ -5,8 +5,10 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 //import application.Card;
@@ -27,6 +29,25 @@ public class cardFunctions extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+    	// EXPERIMENT
+    	//Create a label to display player's money and initialize it with $2500
+    	Label balance = new Label("Balance");
+    	Label moneyLabel = new Label("$2500");
+    	
+    	// Create a button to subtract $100 from player's money
+    	Button subtractChipsButton = new Button("Bet $100");
+    	
+    	// Create an instance of ChipManager with initial money and money label
+    	Moneyfunction chipManager = new Moneyfunction(2500, moneyLabel);
+    	
+    	// Set action for subtractChipsButton - calls subtractChips method of chipManager with amount 100
+    	subtractChipsButton.setOnAction(e -> chipManager.subtractChips(100));
+    	
+    	//
+    	
+   
+    	
+    	
     	Button hitButton = new Button("Hit");
     	Button standButton = new Button("Stand");
     	Button splitButton = new Button("Split");
@@ -34,7 +55,7 @@ public class cardFunctions extends Application {
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
-    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton);
+    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,balance,moneyLabel);
         root.setBottom(buttonBox);
         Scene scene=new Scene(root,500,300);
         primaryStage.setScene(scene);
@@ -98,7 +119,42 @@ public class cardFunctions extends Application {
     	        System.out.print("Cannot double down at this time.");
     	    }
     	});
-    }
+    	
+    	
+//    	 // Create a label to display player's money and initialize it with $2500
+//        Label moneyLabel = new Label("$2500");
+//
+//        // Create an instance of ChipManager with initial money and money label
+//        Moneyfunction chipManager = new Moneyfunction(2500, moneyLabel);
+//
+//        // Create a button to add $100 to player's money
+//        Button addChipsButton = new Button("Add $100");
+//        // Set action for addChipsButton - calls addChips method of chipManager with amount 100
+//        addChipsButton.setOnAction(e -> chipManager.addChips(100));
+//
+//        // Create a button to subtract $100 from player's money
+//        Button subtractChipsButton = new Button("Subtract $100");
+//        // Set action for subtractChipsButton - calls subtractChips method of chipManager with amount 100
+//        subtractChipsButton.setOnAction(e -> chipManager.subtractChips(100));
+//
+//        // Create a vertical box layout to hold UI components
+//        VBox root2 = new VBox(10);
+//        // Add moneyLabel, addChipsButton, and subtractChipsButton to the root layout
+//        root.getChildren().addAll(moneyLabel, addChipsButton, subtractChipsButton);
+//
+//        // Create a scene with the root layout, setting width and height
+//        Scene scene2 = new Scene(root2, 200, 150);
+//
+//        // Set the title of the stage (window)
+//        primaryStage.setTitle("Blackjack");
+//        // Set the scene for the stage
+//        primaryStage.setScene(scene2);
+//        // Show the stage
+//        primaryStage.show();
+    	
+    	
+    	
+    }// END START
     private int calculateScore(ArrayList<Card> hand) {
     	int score = 0;
     	boolean hasAce = false;

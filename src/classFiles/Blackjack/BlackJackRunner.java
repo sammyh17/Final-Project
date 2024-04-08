@@ -22,7 +22,8 @@ public class BlackJackRunner extends Application {
 
 	@Override
 	public void start(Stage primaryStage)
-		{
+		{	
+		
         // Create a label to display player's money and initialize it with $2500
         Label moneyLabel = new Label("$2500");
 
