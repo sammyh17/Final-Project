@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -30,11 +31,14 @@ public class cardFunctions extends Application {
     	Button standButton = new Button("Stand");
     	Button splitButton = new Button("Split");
     	Button doubleDownButton = new Button("Double Down");
-
+    	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
     	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton);
         root.setBottom(buttonBox);
+        Scene scene=new Scene(root,500,300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
     	hitButton.setOnAction(e -> {
             playerHand.add(deck.drawCard());
