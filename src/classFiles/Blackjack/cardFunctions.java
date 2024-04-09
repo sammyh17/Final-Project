@@ -37,7 +37,7 @@ public class cardFunctions extends Application {
         StackPane layout = new StackPane();
         layout.getChildren().add(startButton);
 
-        Scene scene = new Scene(layout, 700, 500);
+        Scene scene = new Scene(layout, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
         
@@ -96,12 +96,13 @@ public class cardFunctions extends Application {
     	Button standButton = new Button("Stand");
     	Button splitButton = new Button("Split");
     	Button doubleDownButton = new Button("Double Down");
+    	Button startHand = new Button("Play hand");
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
-    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel);
+    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel,startHand);
         root.setBottom(buttonBox);
-        Scene scene2=new Scene(root,700,500);
+        Scene scene2=new Scene(root,800,600);
         primaryStage.setScene(scene2);
         primaryStage.show();
         
