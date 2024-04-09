@@ -24,27 +24,28 @@ public class BlackjackGame extends Application {
 
         Button startButton = new Button("Start Game");
         startButton.setOnAction(e -> {
-            // Code to start the game goes here
+            cardFunctions.main(null);
             System.out.println("Starting Blackjack game...");
         });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(startButton);
 
-        Scene scene = new Scene(layout, 300, 200);
+        Scene scene = new Scene(layout, 700, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-}
-        // Set the title of the stage (window)
+        
+     // Set the title of the stage (window)
         primaryStage.setTitle("Blackjack");
         // Set the scene for the stage
         primaryStage.setScene(scene);
         // Show the stage
         primaryStage.show();
-		}
-}
+    }
+
+    public static void main(String[] args) 
+    	{
+        launch(args);
+    	}
+        
+}//End Application

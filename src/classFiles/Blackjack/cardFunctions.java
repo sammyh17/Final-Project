@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,6 +30,26 @@ public class cardFunctions extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+    	primaryStage.setTitle("Blackjack");
+
+        Button startButton = new Button("Start Game");
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add(startButton);
+
+        Scene scene = new Scene(layout, 700, 500);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+//     // Set the title of the stage (window)
+//        primaryStage.setTitle("Blackjack");
+//        // Set the scene for the stage
+//        primaryStage.setScene(scene);
+//        // Show the stage
+//        primaryStage.show();
+    	
+    	
+    	
     	// EXPERIMENT
     	//Create a label to display player's money and initialize it with $2500
     	Label balance = new Label("Balance");
@@ -80,10 +101,22 @@ public class cardFunctions extends Application {
         root.setPadding(new Insets(10));
     	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel);
         root.setBottom(buttonBox);
-        Scene scene=new Scene(root,700,500);
+        Scene scene2=new Scene(root,700,500);
+        primaryStage.setScene(scene2);
+        primaryStage.show();
+        
+        
+        primaryStage.setTitle("Blackjack");
+        // Set the scene for the stage
         primaryStage.setScene(scene);
+        // Show the stage
         primaryStage.show();
 
+        startButton.setOnAction(e -> {
+        	primaryStage.setScene(scene2);
+            System.out.println("Starting Blackjack game...");
+        });
+        
     	hitButton.setOnAction(e -> {
             playerHand.add(deck.drawCard());
             checkPlayerBust();
