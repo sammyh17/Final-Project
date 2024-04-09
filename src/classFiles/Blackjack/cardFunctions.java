@@ -160,7 +160,7 @@ public class cardFunctions extends Application {
     	        System.out.print("Cannot split at this time.");
     	    }
     	});
-
+/*
     	doubleDownButton.setOnAction(e -> {
     	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
 
@@ -176,7 +176,7 @@ public class cardFunctions extends Application {
     	        System.out.print("Cannot double down at this time.");
     	    }
     	});
-    	
+*/    	
     	
 //    	 // Create a label to display player's money and initialize it with $2500
 //        Label moneyLabel = new Label("$2500");
