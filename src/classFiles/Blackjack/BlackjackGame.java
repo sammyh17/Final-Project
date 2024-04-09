@@ -16,7 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class BlackjackGame extends Application {
+public class BlackjackGame extends Application 
+{
 
     @Override
     public void start(Stage primaryStage) {
@@ -34,17 +35,20 @@ public class BlackjackGame extends Application {
         Scene scene = new Scene(layout, 300, 200);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-}
-        // Set the title of the stage (window)
+        
+     // Set the title of the stage (window)
         primaryStage.setTitle("Blackjack");
         // Set the scene for the stage
         primaryStage.setScene(scene);
         // Show the stage
         primaryStage.show();
-		}
+    }
+
+    public static void main(String[] args) 
+    	{
+        launch(args);
+    	}
+
+    
+
 }
