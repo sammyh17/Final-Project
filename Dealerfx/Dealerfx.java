@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Dealer2 extends Application {
+public class Dealerfx extends Application {
     private List<Integer> deck;
     private int nextCardIndex;
     private Label cardLabel;
