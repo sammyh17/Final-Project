@@ -36,8 +36,9 @@ public class cardFunctions extends Application {
     	Label betsize = new Label("Bet amount");
     	Label betLabel = new Label("$0");
     	
-    	// Create a button to subtract $100 from player's money
+    	// Create a button to subtract $100 from player's money and add to bet pool
     	Button subtractChipsButton = new Button("Bet $100");
+    	// Create a butoon to add $100 to player's money from bet pool
     	Button refundChipsButton = new Button("Return $100");
     	
     	// Create an instance of ChipManager with initial money and money label
@@ -46,8 +47,25 @@ public class cardFunctions extends Application {
     	Moneyfunction betManager = new Moneyfunction(0, betLabel);
     	
     	// Set action for subtractChipsButton - calls subtractChips method of chipManager with amount 100
-    	subtractChipsButton.setOnAction(e -> {chipManager.subtractChips(100);  betManager.addChips(100);});
-    	refundChipsButton.setOnAction(e -> {betManager.subtractChips(100); chipManager.addChips(100);});
+    	subtractChipsButton.setOnAction(e -> 
+    		{
+    		if(chipManager.getBal() >= 100)
+    			{
+    			chipManager.subtractChips(100);  
+    	    	betManager.addChips(100);
+    			}
+    		}
+    	);
+    	
+    	refundChipsButton.setOnAction(e -> 
+    		{
+    		if(betManager.getBal() >= 100)
+    			{
+    			betManager.subtractChips(100); 
+        		chipManager.addChips(100);
+    			}
+    		}
+    	);
     	//
     	
    
