@@ -1,15 +1,43 @@
 package src.classFiles.Blackjack;
+<<<<<<< HEAD
+=======
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+>>>>>>> branch 'main' of https://github.com/sammyh17/Final-Project.git
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Dealer2 {
+public class Dealer2 extends Application {
     private List<Integer> deck;
     private int nextCardIndex;
+    private Label cardLabel;
 
+<<<<<<< HEAD
     public Dealer2() {
+=======
+    @Override
+    public void start(Stage primaryStage) {
+        deck = new ArrayList<>();
+>>>>>>> branch 'main' of https://github.com/sammyh17/Final-Project.git
         resetDeck();
+
+        VBox root = new VBox();
+        cardLabel = new Label();
+
+        root.getChildren().add(cardLabel);
+
+        dealCard();
+
+        Scene scene = new Scene(root, 200, 200);
+        primaryStage.setTitle("Dealer");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     private void resetDeck() {
@@ -23,18 +51,16 @@ public class Dealer2 {
         nextCardIndex = 0;
     }
 
-    public int dealCard() {
+    public void dealCard() {
         if (nextCardIndex >= deck.size()) {
             resetDeck();
         }
-        return deck.get(nextCardIndex++);
-    }
-
-    public boolean isDeckEmpty() {
-        return nextCardIndex >= deck.size();
+        int card = deck.get(nextCardIndex++);
+        cardLabel.setText("Dealt card: " + card);
     }
 
     public static void main(String[] args) {
+<<<<<<< HEAD
         Dealer2 dealer = new Dealer2();
         int playerTotal = 0;
         int dealerTotal = 0;
@@ -100,5 +126,8 @@ public class Dealer2 {
         } else {
             System.out.println("It's a tie! Player total: " + playerTotal + ", Dealer total: " + dealerTotal);
         }
+=======
+        launch(args);
+>>>>>>> branch 'main' of https://github.com/sammyh17/Final-Project.git
     }
 }

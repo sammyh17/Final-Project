@@ -29,6 +29,11 @@ public class Moneyfunction {
             System.out.println("Insufficient funds!");
         }
     }
+    
+    public int getBal()
+    	{
+    	return playerMoney;
+    	}
 
     // Private method to update the money label on the UI
     private void updateMoneyLabel() {

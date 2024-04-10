@@ -25,14 +25,14 @@ public class BlackjackGame extends Application
 
         Button startButton = new Button("Start Game");
         startButton.setOnAction(e -> {
-            // Code to start the game goes here
+            cardFunctions.main(null);
             System.out.println("Starting Blackjack game...");
         });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(startButton);
 
-        Scene scene = new Scene(layout, 300, 200);
+        Scene scene = new Scene(layout, 700, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
         
@@ -48,7 +48,12 @@ public class BlackjackGame extends Application
     	{
         launch(args);
     	}
+<<<<<<< HEAD
 
     
 
 }
+=======
+        
+}//End Application
+>>>>>>> branch 'main' of https://github.com/sammyh17/Final-Project.git

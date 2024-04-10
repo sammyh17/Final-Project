@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,6 +30,26 @@ public class cardFunctions extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+    	primaryStage.setTitle("Blackjack");
+
+        Button startButton = new Button("Start Game");
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add(startButton);
+
+        Scene scene = new Scene(layout, 700, 500);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+//     // Set the title of the stage (window)
+//        primaryStage.setTitle("Blackjack");
+//        // Set the scene for the stage
+//        primaryStage.setScene(scene);
+//        // Show the stage
+//        primaryStage.show();
+    	
+    	
+    	
     	// EXPERIMENT
     	//Create a label to display player's money and initialize it with $2500
     	Label balance = new Label("Balance");
@@ -36,8 +57,9 @@ public class cardFunctions extends Application {
     	Label betsize = new Label("Bet amount");
     	Label betLabel = new Label("$0");
     	
-    	// Create a button to subtract $100 from player's money
+    	// Create a button to subtract $100 from player's money and add to bet pool
     	Button subtractChipsButton = new Button("Bet $100");
+    	// Create a butoon to add $100 to player's money from bet pool
     	Button refundChipsButton = new Button("Return $100");
     	
     	// Create an instance of ChipManager with initial money and money label
@@ -46,8 +68,25 @@ public class cardFunctions extends Application {
     	Moneyfunction betManager = new Moneyfunction(0, betLabel);
     	
     	// Set action for subtractChipsButton - calls subtractChips method of chipManager with amount 100
-    	subtractChipsButton.setOnAction(e -> {chipManager.subtractChips(100);  betManager.addChips(100);});
-    	refundChipsButton.setOnAction(e -> {betManager.subtractChips(100); chipManager.addChips(100);});
+    	subtractChipsButton.setOnAction(e -> 
+    		{
+    		if(chipManager.getBal() >= 100)
+    			{
+    			chipManager.subtractChips(100);  
+    	    	betManager.addChips(100);
+    			}
+    		}
+    	);
+    	
+    	refundChipsButton.setOnAction(e -> 
+    		{
+    		if(betManager.getBal() >= 100)
+    			{
+    			betManager.subtractChips(100); 
+        		chipManager.addChips(100);
+    			}
+    		}
+    	);
     	//
     	
    
@@ -55,60 +94,83 @@ public class cardFunctions extends Application {
     	
     	Button hitButton = new Button("Hit");
     	Button standButton = new Button("Stand");
-    	Button splitButton = new Button("Split");
-    	Button doubleDownButton = new Button("Double Down");
+    	//Button splitButton = new Button("Split");
+    	//Button doubleDownButton = new Button("Double Down");
+    	Button startHand = new Button("Play hand");
+    	
+    	startHand.setOnAction(e -> {
+    		subtractChipsButton.setOnAction(null);
+    		refundChipsButton.setOnAction(null);
+    		hitButton.setOnAction(l -> {
+                playerHand.add(deck.drawCard());
+                checkPlayerBust();
+            });
+
+        	standButton.setOnAction(f -> {
+                while (calculateScore(dealerHand) < 17) {
+                    dealerHand.add(deck.drawCard());
+                }
+                determineWinner();
+            });
+
+    		
+    	});
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
-    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel);
+    	HBox buttonBox = new HBox(10, hitButton, standButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel,startHand);
         root.setBottom(buttonBox);
-        Scene scene=new Scene(root,700,500);
+        Scene scene2=new Scene(root,700,500);
+        primaryStage.setScene(scene2);
+        primaryStage.show();
+        
+        
+        primaryStage.setTitle("Blackjack");
+        // Set the scene for the stage
         primaryStage.setScene(scene);
+        // Show the stage
         primaryStage.show();
 
-    	hitButton.setOnAction(e -> {
-            playerHand.add(deck.drawCard());
-            checkPlayerBust();
+        startButton.setOnAction(e -> {
+        	primaryStage.setScene(scene2);
+            System.out.println("Starting Blackjack game...");
         });
+        
+    	hitButton.setOnAction(null);
 
-    	standButton.setOnAction(e -> {
-            while (calculateScore(dealerHand) < 17) {
-                dealerHand.add(deck.drawCard());
-            }
-            determineWinner();
-        });
+    	standButton.setOnAction(null);
 
-    	splitButton.setOnAction(e -> {
-    	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
-    	        // Check if the first two cards are the same rank (e.g., two Queens)
-    	        if (playerHand.get(0).getRank() == playerHand.get(1).getRank()) {
-    	            // Deduct the bet amount for the second hand
-    	            playerBalance -= BET_AMOUNT;
-
-
-    	            // Create two separate hands and deal one card to each
-    	            ArrayList<Card> hand1 = new ArrayList<>();
-    	            ArrayList<Card> hand2 = new ArrayList<>();
-    	            hand1.add(playerHand.get(0));
-    	            hand2.add(playerHand.get(1));
-    	            hand1.add(deck.drawCard());
-    	            hand2.add(deck.drawCard());
-
-    	            // Update playerHand to hold the first hand, and add the second hand
-    	            playerHand.clear();
-    	            playerHand.addAll(hand1);
-    	            playerHand.addAll(hand2);
-
-    	        } else {
-    	            // If the two cards are not the same rank, splitting is not allowed
-    	            System.out.print("Splitting is only allowed with pairs of the same rank.");
-    	        }
-    	    } else {
-    	        // Insufficient cards or balance for splitting
-    	        System.out.print("Cannot split at this time.");
-    	    }
-    	});
-
+//    	splitButton.setOnAction(e -> {
+//    	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
+//    	        // Check if the first two cards are the same rank (e.g., two Queens)
+//    	        if (playerHand.get(0).getRank() == playerHand.get(1).getRank()) {
+//    	            // Deduct the bet amount for the second hand
+//    	            playerBalance -= BET_AMOUNT;
+//
+//
+//    	            // Create two separate hands and deal one card to each
+//    	            ArrayList<Card> hand1 = new ArrayList<>();
+//    	            ArrayList<Card> hand2 = new ArrayList<>();
+//    	            hand1.add(playerHand.get(0));
+//    	            hand2.add(playerHand.get(1));
+//    	            hand1.add(deck.drawCard());
+//    	            hand2.add(deck.drawCard());
+//
+//    	            // Update playerHand to hold the first hand, and add the second hand
+//    	            playerHand.clear();
+//    	            playerHand.addAll(hand1);
+//    	            playerHand.addAll(hand2);
+//
+//    	        } else {
+//    	            // If the two cards are not the same rank, splitting is not allowed
+//    	            System.out.print("Splitting is only allowed with pairs of the same rank.");
+//    	        }
+//    	    } else {
+//    	        // Insufficient cards or balance for splitting
+//    	        System.out.print("Cannot split at this time.");
+//    	    }
+//    	});
+/*
     	doubleDownButton.setOnAction(e -> {
     	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
 
@@ -124,7 +186,7 @@ public class cardFunctions extends Application {
     	        System.out.print("Cannot double down at this time.");
     	    }
     	});
-    	
+*/    	
     	
 //    	 // Create a label to display player's money and initialize it with $2500
 //        Label moneyLabel = new Label("$2500");
