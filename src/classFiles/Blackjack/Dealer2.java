@@ -24,7 +24,7 @@ public class Dealer2 extends Application {
 
         root.getChildren().add(cardLabel);
 
-        dealCardAndUpdateLabel();
+        dealCard();
 
         Scene scene = new Scene(root, 200, 200);
         primaryStage.setTitle("Dealer");
@@ -45,7 +45,7 @@ public class Dealer2 extends Application {
         Collections.shuffle(deck);
     }
 
-    private void dealCardAndUpdateLabel() {
+    public void dealCard() {
         if (nextCardIndex >= deck.size()) {
             resetDeck();
         }

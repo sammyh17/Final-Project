@@ -98,7 +98,23 @@ public class cardFunctions extends Application {
     	//Button doubleDownButton = new Button("Double Down");
     	Button startHand = new Button("Play hand");
     	
-    	startHand.setOnAction(null);
+    	startHand.setOnAction(e -> {
+    		subtractChipsButton.setOnAction(null);
+    		refundChipsButton.setOnAction(null);
+    		hitButton.setOnAction(l -> {
+                playerHand.add(deck.drawCard());
+                checkPlayerBust();
+            });
+
+        	standButton.setOnAction(f -> {
+                while (calculateScore(dealerHand) < 17) {
+                    dealerHand.add(deck.drawCard());
+                }
+                determineWinner();
+            });
+
+    		
+    	});
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
@@ -120,17 +136,9 @@ public class cardFunctions extends Application {
             System.out.println("Starting Blackjack game...");
         });
         
-    	hitButton.setOnAction(e -> {
-            playerHand.add(deck.drawCard());
-            checkPlayerBust();
-        });
+    	hitButton.setOnAction(null);
 
-    	standButton.setOnAction(e -> {
-            while (calculateScore(dealerHand) < 17) {
-                dealerHand.add(deck.drawCard());
-            }
-            determineWinner();
-        });
+    	standButton.setOnAction(null);
 
 //    	splitButton.setOnAction(e -> {
 //    	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
