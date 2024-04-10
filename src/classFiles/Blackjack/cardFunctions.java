@@ -37,7 +37,7 @@ public class cardFunctions extends Application {
         StackPane layout = new StackPane();
         layout.getChildren().add(startButton);
 
-        Scene scene = new Scene(layout, 800, 600);
+        Scene scene = new Scene(layout, 700, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
         
@@ -94,15 +94,17 @@ public class cardFunctions extends Application {
     	
     	Button hitButton = new Button("Hit");
     	Button standButton = new Button("Stand");
-    	Button splitButton = new Button("Split");
-    	Button doubleDownButton = new Button("Double Down");
+    	//Button splitButton = new Button("Split");
+    	//Button doubleDownButton = new Button("Double Down");
     	Button startHand = new Button("Play hand");
+    	
+    	startHand.setOnAction(null);
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
-    	HBox buttonBox = new HBox(10, hitButton, standButton, splitButton, doubleDownButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel,startHand);
+    	HBox buttonBox = new HBox(10, hitButton, standButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel,startHand);
         root.setBottom(buttonBox);
-        Scene scene2=new Scene(root,800,600);
+        Scene scene2=new Scene(root,700,500);
         primaryStage.setScene(scene2);
         primaryStage.show();
         
@@ -130,36 +132,36 @@ public class cardFunctions extends Application {
             determineWinner();
         });
 
-    	splitButton.setOnAction(e -> {
-    	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
-    	        // Check if the first two cards are the same rank (e.g., two Queens)
-    	        if (playerHand.get(0).getRank() == playerHand.get(1).getRank()) {
-    	            // Deduct the bet amount for the second hand
-    	            playerBalance -= BET_AMOUNT;
-
-
-    	            // Create two separate hands and deal one card to each
-    	            ArrayList<Card> hand1 = new ArrayList<>();
-    	            ArrayList<Card> hand2 = new ArrayList<>();
-    	            hand1.add(playerHand.get(0));
-    	            hand2.add(playerHand.get(1));
-    	            hand1.add(deck.drawCard());
-    	            hand2.add(deck.drawCard());
-
-    	            // Update playerHand to hold the first hand, and add the second hand
-    	            playerHand.clear();
-    	            playerHand.addAll(hand1);
-    	            playerHand.addAll(hand2);
-
-    	        } else {
-    	            // If the two cards are not the same rank, splitting is not allowed
-    	            System.out.print("Splitting is only allowed with pairs of the same rank.");
-    	        }
-    	    } else {
-    	        // Insufficient cards or balance for splitting
-    	        System.out.print("Cannot split at this time.");
-    	    }
-    	});
+//    	splitButton.setOnAction(e -> {
+//    	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
+//    	        // Check if the first two cards are the same rank (e.g., two Queens)
+//    	        if (playerHand.get(0).getRank() == playerHand.get(1).getRank()) {
+//    	            // Deduct the bet amount for the second hand
+//    	            playerBalance -= BET_AMOUNT;
+//
+//
+//    	            // Create two separate hands and deal one card to each
+//    	            ArrayList<Card> hand1 = new ArrayList<>();
+//    	            ArrayList<Card> hand2 = new ArrayList<>();
+//    	            hand1.add(playerHand.get(0));
+//    	            hand2.add(playerHand.get(1));
+//    	            hand1.add(deck.drawCard());
+//    	            hand2.add(deck.drawCard());
+//
+//    	            // Update playerHand to hold the first hand, and add the second hand
+//    	            playerHand.clear();
+//    	            playerHand.addAll(hand1);
+//    	            playerHand.addAll(hand2);
+//
+//    	        } else {
+//    	            // If the two cards are not the same rank, splitting is not allowed
+//    	            System.out.print("Splitting is only allowed with pairs of the same rank.");
+//    	        }
+//    	    } else {
+//    	        // Insufficient cards or balance for splitting
+//    	        System.out.print("Cannot split at this time.");
+//    	    }
+//    	});
 /*
     	doubleDownButton.setOnAction(e -> {
     	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
