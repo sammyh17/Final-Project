@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+//import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 //import application.Card;
@@ -52,9 +52,9 @@ public class cardFunctions extends Application {
     	
     	// EXPERIMENT
     	//Create a label to display player's money and initialize it with $2500
-    	Label balance = new Label("Balance");
+    	Label balance = new Label("Balance:");
     	Label moneyLabel = new Label("$2500");
-    	Label betsize = new Label("Bet amount");
+    	Label betsize = new Label("Bet amount:");
     	Label betLabel = new Label("$0");
     	
     	// Create a button to subtract $100 from player's money and add to bet pool
@@ -97,24 +97,27 @@ public class cardFunctions extends Application {
     	//Button splitButton = new Button("Split");
     	//Button doubleDownButton = new Button("Double Down");
     	Button startHand = new Button("Play hand");
+    	if((betManager.getBal())==0) {
+    		startHand.setOnAction(null);
+    		hitButton.setOnAction(null);
+    		standButton.setOnAction(null);
+    		} else {
+    			startHand.setOnAction(e -> {
+    				subtractChipsButton.setOnAction(null);
+    				refundChipsButton.setOnAction(null);
+    				hitButton.setOnAction(l -> {
+    					playerHand.add(deck.drawCard());
+    					checkPlayerBust();
+    					});
+    				standButton.setOnAction(f -> {
+    					while (calculateScore(dealerHand) < 17) {
+    						dealerHand.add(deck.drawCard());
+    						}
+    					determineWinner();
+    					});
+    			});
+    	}
     	
-    	startHand.setOnAction(e -> {
-    		subtractChipsButton.setOnAction(null);
-    		refundChipsButton.setOnAction(null);
-    		hitButton.setOnAction(l -> {
-                playerHand.add(deck.drawCard());
-                checkPlayerBust();
-            });
-
-        	standButton.setOnAction(f -> {
-                while (calculateScore(dealerHand) < 17) {
-                    dealerHand.add(deck.drawCard());
-                }
-                determineWinner();
-            });
-
-    		
-    	});
     	
     	BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
@@ -135,10 +138,6 @@ public class cardFunctions extends Application {
         	primaryStage.setScene(scene2);
             System.out.println("Starting Blackjack game...");
         });
-        
-    	hitButton.setOnAction(null);
-
-    	standButton.setOnAction(null);
 
 //    	splitButton.setOnAction(e -> {
 //    	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {

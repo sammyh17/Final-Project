@@ -36,7 +36,7 @@ public class Moneyfunction {
     	}
 
     // Private method to update the money label on the UI
-    private void updateMoneyLabel() {
+    public void updateMoneyLabel() {
         moneyLabel.setText("$" + playerMoney); // Update the money label on the UI with current money
     }
 
