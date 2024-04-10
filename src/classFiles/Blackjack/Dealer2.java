@@ -63,7 +63,7 @@ public class Dealer2 {
         while (true) {
             System.out.println("Player total: " + playerTotal);
             if (playerTotal == 21) {
-                System.out.println("Player has 21! Player wins!");
+                System.out.println("Player has 1 + 10! Player wins!");
                 return; // End the game
             } else if (playerTotal > 21) {
                 System.out.println("Player busted! Total: " + playerTotal);
