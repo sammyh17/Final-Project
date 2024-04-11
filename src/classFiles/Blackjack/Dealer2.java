@@ -1,15 +1,42 @@
 package src.classFiles.Blackjack;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Dealer2 {
+public class Dealer2 extends Application {
     private List<Integer> deck;
     private int nextCardIndex;
+    private Label cardLabel;
 
-    public Dealer2() {
+
+    //public Dealer2() {
+
+    @Override
+    public void start(Stage primaryStage) {
+        deck = new ArrayList<>();
+
         resetDeck();
+
+        VBox root = new VBox();
+        cardLabel = new Label();
+
+        root.getChildren().add(cardLabel);
+
+        dealCard();
+
+        Scene scene = new Scene(root, 200, 200);
+        primaryStage.setTitle("Dealer");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     private void resetDeck() {
@@ -27,11 +54,9 @@ public class Dealer2 {
         if (nextCardIndex >= deck.size()) {
             resetDeck();
         }
-        return deck.get(nextCardIndex++);
-    }
-
-    public boolean isDeckEmpty() {
-        return nextCardIndex >= deck.size();
+        int card = deck.get(nextCardIndex++);
+        cardLabel.setText("Dealt card: " + card);
+		return card;
     }
 
     public static void main(String[] args) {
@@ -100,5 +125,8 @@ public class Dealer2 {
         } else {
             System.out.println("It's a tie! Player total: " + playerTotal + ", Dealer total: " + dealerTotal);
         }
+
+        launch(args);
+
     }
 }
