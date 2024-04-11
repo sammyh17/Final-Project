@@ -10,6 +10,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 //import application.Card;
@@ -32,14 +36,19 @@ public class cardFunctions extends Application {
     public void start(Stage primaryStage) {
     	primaryStage.setTitle("Blackjack");
 
+    	Rectangle rect = new Rectangle(2000,2000);
+        rect.setFill(Color.DARKGREEN);
         Button startButton = new Button("Start Game");
 
         StackPane layout = new StackPane();
+        layout.getChildren().add(rect);
         layout.getChildren().add(startButton);
 
         Scene scene = new Scene(layout, 700, 500);
+        
         primaryStage.setScene(scene);
         primaryStage.show();
+        
         
 //     // Set the title of the stage (window)
 //        primaryStage.setTitle("Blackjack");
@@ -56,6 +65,10 @@ public class cardFunctions extends Application {
     	Label moneyLabel = new Label("$2500");
     	Label betsize = new Label("Bet amount");
     	Label betLabel = new Label("$0");
+    	balance.setTextFill(Color.WHITE);
+    	moneyLabel.setTextFill(Color.WHITE);
+    	betsize.setTextFill(Color.WHITE);
+    	betLabel.setTextFill(Color.WHITE);
     	
     	// Create a button to subtract $100 from player's money and add to bet pool
     	Button subtractChipsButton = new Button("Bet $100");
@@ -103,27 +116,30 @@ public class cardFunctions extends Application {
     		refundChipsButton.setOnAction(null);
     		hitButton.setOnAction(l -> {
                 playerHand.add(deck.drawCard());
-                checkPlayerBust();
+                checkPlayerBust(); 
             });
 
         	standButton.setOnAction(f -> {
                 while (calculateScore(dealerHand) < 17) {
                     dealerHand.add(deck.drawCard());
                 }
-                determineWinner();
+                determineWinner(); 
             });
-
     		
     	});
-    	
+  
+    	Rectangle rect2 = new Rectangle(2000,2000);
+        rect2.setFill(Color.DARKGREEN);
+              
     	BorderPane root = new BorderPane();
+    	root.getChildren().add(rect2);
         root.setPadding(new Insets(10));
     	HBox buttonBox = new HBox(10, hitButton, standButton,subtractChipsButton,refundChipsButton,balance,moneyLabel,betsize,betLabel,startHand);
         root.setBottom(buttonBox);
         Scene scene2=new Scene(root,700,500);
         primaryStage.setScene(scene2);
         primaryStage.show();
-        
+      
         
         primaryStage.setTitle("Blackjack");
         // Set the scene for the stage
@@ -139,6 +155,15 @@ public class cardFunctions extends Application {
     	hitButton.setOnAction(null);
 
     	standButton.setOnAction(null);
+    	
+    	
+    	Card testCard = new Card(1, "Spades", "Ace");
+        Text text = new Text(testCard.getRank() + " of " + testCard.getSuit());
+        Translate rosettaStone = new Translate();
+        rosettaStone.setY(100);
+        rosettaStone.setX(100);
+        text.getTransforms().add(rosettaStone);
+        root.getChildren().add(text);
 
 //    	splitButton.setOnAction(e -> {
 //    	    if (playerHand.size() == 2 && playerBalance >= BET_AMOUNT) {
@@ -240,7 +265,7 @@ public class cardFunctions extends Application {
     private void checkPlayerBust() {
         if (calculateScore(playerHand) > 21) {
             System.out.print("You Bust! Dealer Wins!");
-            playerBalance -= 10;
+            playerBalance -= BET_AMOUNT;
             System.out.print("Balance: $" + playerBalance);
         }
     }
