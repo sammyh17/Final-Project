@@ -109,10 +109,13 @@ public class cardFunctions extends Application {
     	
     	
     	Button hitButton = new Button("Hit");
+    	hitButton.setTextFill(Color.RED);
     	Button standButton = new Button("Stand");
+    	standButton.setTextFill(Color.RED);
     	//Button splitButton = new Button("Split");
     	//Button doubleDownButton = new Button("Double Down");
     	Button startHand = new Button("Play hand");
+    	startHand.setTextFill(Color.RED);
     	if((betManager.getBal())==0) {
     		startHand.setOnAction(null);
     		hitButton.setOnAction(null);
@@ -185,6 +188,7 @@ public class cardFunctions extends Application {
     	Card testCard = new Card(1, "Spades", "Ace");
         Text text = new Text(testCard.getRank() + " of " + testCard.getSuit());
         Translate rosettaStone = new Translate();
+        text.setStroke(Color.WHITE);
         rosettaStone.setY(100);
         rosettaStone.setX(100);
         text.getTransforms().add(rosettaStone);
