@@ -125,12 +125,12 @@ public class cardFunctions extends Application {
     				subtractChipsButton.setOnAction(null);
     				refundChipsButton.setOnAction(null);
     				hitButton.setOnAction(l -> {
-    					playerHand.add(deck.drawCard());
+    					playerHand.add(Dealer2.dealCard());
     					checkPlayerBust();
     					});
     				standButton.setOnAction(f -> {
     					while (calculateScore(dealerHand) < 17) {
-    						dealerHand.add(deck.drawCard());
+    						dealerHand.add(Dealer2.dealCard());
     						}
     					determineWinner();
     					});
@@ -142,13 +142,13 @@ public class cardFunctions extends Application {
     		subtractChipsButton.setOnAction(null);
     		refundChipsButton.setOnAction(null);
     		hitButton.setOnAction(l -> {
-                playerHand.add(deck.drawCard());
+                playerHand.add(Dealer2.dealCard());
                 checkPlayerBust(); 
             });
 
         	standButton.setOnAction(f -> {
                 while (calculateScore(dealerHand) < 17) {
-                    dealerHand.add(deck.drawCard());
+                    dealerHand.add(Dealer2.dealCard());
                 }
                 determineWinner(); 
             });
@@ -306,13 +306,13 @@ public class cardFunctions extends Application {
 
         if (playerScore > 21) {
             System.out.print("You Bust! Dealer Wins!");
-            playerBalance -= BET_AMOUNT;
+           BET_AMOUNT = 0;
         } else if (dealerScore > 21 || playerScore > dealerScore) {
             System.out.print("You Win!");
             playerBalance += BET_AMOUNT;
         } else if (playerScore < dealerScore) {
             System.out.print("Dealer Wins!");
-            playerBalance -= BET_AMOUNT;
+            BET_AMOUNT = 0;
         } else {
             System.out.print("It's a Tie!");
         }
@@ -320,14 +320,7 @@ public class cardFunctions extends Application {
         System.out.print("Balance: $" + playerBalance);
     }
 
-    public Card drawCard() {
-        if (cards.isEmpty()) {
-            throw new IllegalStateException("Deck is empty");
-        }
-        return cards.remove(cards.size() - 1);
-    }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void main(String[] args) 
+    	{launch(args);}
 }

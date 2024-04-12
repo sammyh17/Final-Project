@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class Deck
 {
-	private ArrayList<Card> deck;
+	private static ArrayList<Card> deck;
 	final static String[] suits = {"Clubs" , "Diamonds" , "Hearts" , "Spades"};
 	final static String[] ranks = {"2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"};
 
@@ -55,9 +55,13 @@ public class Deck
 	   * Method for drawing the top card in the deck
 	   * @return card
 	   */
-	  public Card drawCard()
+	  public static Card drawCard()
 	  	{
 		return deck.get(0);
 	  	}
+
+	public static int size() {
+		return size();
+	}
 
 }// END CLASS
